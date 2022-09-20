@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    testLogging.showStandardStreams = true
+}
+
+check.dependsOn.add('runTest')
+
+task runTest(type: JavaExec) {
+    main = 'mypack.IntegrationTest'
+    classpath sourceSets.test.runtimeClasspath
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
